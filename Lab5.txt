@@ -1,0 +1,184 @@
+
+R version 3.5.2 (2018-12-20) -- "Eggshell Igloo"
+Copyright (C) 2018 The R Foundation for Statistical Computing
+Platform: x86_64-apple-darwin15.6.0 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+[R.app GUI 1.70 (7612) x86_64-apple-darwin15.6.0]
+
+[History restored from /Users/rushipatel/.Rapp.history]
+
+> rolldie<-function(n) sum(sample(c(1,2,3,4,5,6),n,rep=TRUE))
+> out<-vector(length=100)
+> for(i in 1:100){+ out[i]<-mycoin2(100,.8)+ }
+Error: unexpected '}' in "for(i in 1:100){+ out[i]<-mycoin2(100,.8)+ }"
+> for(i in 1:100){
++  out[i]<-mycoin2(100,.8)
++ }
+Error in mycoin2(100, 0.8) : could not find function "mycoin2"
+> for(i in 1:100){
++ out[i]<-rolldie(100)
++ }
+> table(out)
+out
+315 316 320 323 325 326 327 328 329 330 332 335 336 337 338 339 340 341 342 
+  1   1   1   1   2   2   1   1   3   1   2   1   1   4   4   2   2   1   1 
+343 344 345 346 347 348 349 350 351 352 354 355 356 357 358 359 360 361 362 
+  1   4   6   1   1   2   5   1   1   1   4   2   4   2   5   1   2   3   4 
+363 367 368 369 371 373 378 383 401 
+  3   3   2   3   1   3   1   1   1 
+starting httpd help server ... done
+> table(out,1,2,3,4,5,6)
+Error in table(out, 1, 2, 3, 4, 5, 6) : 
+  all arguments must have the same length
+> table(1,2,3,4,5,6)
+, ,  = 3,  = 4,  = 5,  = 6
+
+   
+    2
+  1 1
+
+> table(out)
+out
+315 316 320 323 325 326 327 328 329 330 332 335 336 337 338 339 340 341 342 
+  1   1   1   1   2   2   1   1   3   1   2   1   1   4   4   2   2   1   1 
+343 344 345 346 347 348 349 350 351 352 354 355 356 357 358 359 360 361 362 
+  1   4   6   1   1   2   5   1   1   1   4   2   4   2   5   1   2   3   4 
+363 367 368 369 371 373 378 383 401 
+  3   3   2   3   1   3   1   1   1 
+> table(out.length>2)
+Error in table(out.length > 2) : object 'out.length' not found
+> table(out[i]==1)
+
+FALSE 
+    1 
+> table(out[i]=1)
+Error: unexpected '=' in "table(out[i]="
+> table(out[i]==3)
+
+FALSE 
+    1 
+> rolldie<-function(n) sample(c(1,2,3,4,5,6),n,rep=TRUE)
+> table(rolldie)
+Error in unique.default(x, nmax = nmax) : 
+  unique() applies only to vectors
+> out<-vector(length=100)
+> 
+> table(out)
+out
+FALSE 
+  100 
+> for(i in 1:100){
++ out[i]<-rolldie(100)
++ }
+There were 50 or more warnings (use warnings() to see the first 50)
+> table(out)
+out
+ 1  2  3  4  5  6 
+14 12 18 15 17 24 
+> as.numeric(table(out))
+[1] 14 12 18 15 17 24
+> as.numeric(table(out))[3]
+[1] 18
+> out1<-rolldie(1)
+> out2<-rolldie(1)
+> out1
+[1] 3
+> out2
+[1] 2
+> outAttacker<-vector(length=100)
+> outDefender<-vector(length=100)
+> for(i in 1:100){
++ outAttacker[i]
++ }
+> clear(outAttacker)
+Error in clear(outAttacker) : could not find function "clear"
+> outAttacker1<-vector(length=100)
+> for(i in 1:100){
++ outAttacker1[i]<-rolldie(100)
++ outDefender[i]<-rolldie(100)
++ }
+There were 50 or more warnings (use warnings() to see the first 50)
+> table(outAttacker1[i]>outDefender[i])
+
+FALSE 
+    1 
+> table(outAttacker1>outDefender)
+
+FALSE  TRUE 
+   60    40 
+> outAttacker2<-vector(length=100)
+> for(i in 1:100){
++ outAttacker2[i]<-rolldie(100)
++ }
+There were 50 or more warnings (use warnings() to see the first 50)
+> table(outAttacker1>outDefender|outAttacker2>outDefender)
+
+FALSE  TRUE 
+   43    57 
+> outAttacker3<-vector(length=100)
+> for(i in 1:100){
++ outAttacker3[i]<-rolldie(100)
++ }
+There were 50 or more warnings (use warnings() to see the first 50)
+> table(outAttacker1>outDefender|outAttacker2>outDefender|outAttacker3>outDefender)
+
+FALSE  TRUE 
+   29    71 
+> outDefender2<-vector(length=100)
+> for(i in 1:100){
++ outDefender2[i]<-rolldie(100)
++ }
+There were 50 or more warnings (use warnings() to see the first 50)
+> table(outDefender>=outAttacker1|outDefender2>=outAttacker1)
+
+FALSE  TRUE 
+   21    79 
+> table((outAttacker1>outDefender&&outAttacker1>outAttacker2)|(outAttacker2>outDefender&&outAttacker2>outAttacker1))
+
+TRUE 
+   1 
+> table((outAttacker1>outDefender&&outAttacker1>outAttacker2)|(outAttacker2>outDefender2&&outAttacker2>outAttacker1))
+
+FALSE 
+    1 
+> table((outAttacker1>outDefender&&outAttacker1>outAttacker2)|(outAttacker2>outDefender2&&outAttacker2>=outAttacker1))
+
+FALSE 
+    1 
+> table((outAttacker1>outDefender&outDefender>outDefender2&outAttacker1>outAttacker2)|(outAttacker2>outDefender&outDefender>outDefender2&outAttacker2>outAttacker1)|(outAttacker1>outDefender2&outDefender2>outDefender&outAttacker1>outAttacker2)|(outAttacker2>outDefender2&outDefender2>outDefender&outAttacker2>outAttacker1))
+
+FALSE  TRUE 
+   77    23 
+> table((outAttacker1>outDefender&outDefender>outDefender2&outAttacker1>outAttacker2&outAttacker1>outAttacker3)|(outAttacker2>outDefender&outDefender>outDefender2&outAttacker2>outAttacker1&outAttacker2>outAttacker3)|(outAttacker1>outDefender2&outDefender2>outDefender&outAttacker1>outAttacker2&outAttacker1>outAttacker3)|(outAttacker2>outDefender2&outDefender2>outDefender&outAttacker2>outAttacker1&outAttacker2>outAttacker3)|(outAttacker3>outDefender&outDefender>outDefender2&outAttacker3>outAttacker2&outAttacker3>outAttacker1)|(outAttacker3>outDefender2&outDefender2>outDefender&outAttacker3>outAttacker1&outAttacker3>outAttacker2))
+
+FALSE  TRUE 
+   71    29 
+> X <- rpoint(100, function(x,y) { x^2}, 1)
+Error in rpoint(100, function(x, y) { : could not find function "rpoint"
+> X<-rpoint(100,function(x,y){x^2},1)
+Error in rpoint(100, function(x, y) { : could not find function "rpoint"
+> X<-rpoint(100)
+Error in rpoint(100) : could not find function "rpoint"
+> table((outAttacker1>outDefender|outAttacker2>outDefender2&outDefender>outDefender2&outAttacker1>outAttacker2)|(outAttacker2>outDefender|outAttacker1>outDefender2&outDefender>outDefender2&outAttacker2>outAttacker1)|(outAttacker1>outDefender2|outAttacker2>outDefender&outDefender2>outDefender&outAttacker1>outAttacker2)|(outAttacker2>outDefender2|outAttacker1>outDefender&outDefender2>outDefender&outAttacker2>outAttacker1))
+
+FALSE  TRUE 
+   25    75 
+> table((outAttacker1>outDefender|outAttacker2>outDefender2&outDefender>outDefender2&outAttacker1>outAttacker2)|(outAttacker2>outDefender|outAttacker1>outDefender2&outDefender>outDefender2&outAttacker2>outAttacker1))
+
+FALSE  TRUE 
+   38    62 
+> 
