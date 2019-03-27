@@ -29,12 +29,14 @@ class View extends JPanel{
     final static int frameHeight = 300;
     final static int imageWidth = 165;
     final static int imageHeight = 165;
-    final static int frameCount = 10;
+    static int frameCount = 10;
     Direction direction;
     int xloc = 0;
     int yloc = 0;
     int picNum = 0;
-    static BufferedImage[][] pics;
+    static BufferedImage[][] movePics;
+    static BufferedImage[][] firePics;
+    static BufferedImage[][] jumpPics;
     JFrame frame;
     JButton jb;
     static boolean paused = false;
@@ -54,14 +56,30 @@ class View extends JPanel{
     	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     	frame.setSize(frameWidth, frameHeight);
     	
-        String[] directions = {"north", "northeast", "east", "southeast", "south", "southwest",
-        "west", "northwest"};
+        String[] directions = {"forward_north", "forward_northeast", "forward_east", "forward_southeast", "forward_south", "forward_southwest",
+        "forward_west", "forward_northwest"};
+        String[] fire = {"fire_north", "fire_northeast", "fire_east", "fire_southeast", "fire_south", "fire_southwest",
+                "fire_west", "fire_northwest"};
+        String[] jump = {"jump_north", "jump_northeast", "jump_east", "jump_southeast", "jump_south", "jump_southwest",
+                "jump_west", "jump_northwest"};
         
-        pics = new BufferedImage[8][10];
+        movePics = new BufferedImage[8][10];
+        firePics = new BufferedImage[8][4];
+        jumpPics = new BufferedImage[8][8];
         for(int i = 0; i < 8; i++){
             BufferedImage img = createImage(directions[i]);
             for(int j = 0; j < frameCount; j++)
-                pics[i][j] = img.getSubimage(imageWidth*j, 0, imageWidth, imageHeight);
+                movePics[i][j] = img.getSubimage(imageWidth*j, 0, imageWidth, imageHeight);
+        }
+        for(int i = 0; i < 8; i++){
+            BufferedImage img = createImage(fire[i]);
+            for(int j = 0; j < 4; j++)
+                firePics[i][j] = img.getSubimage(imageWidth*j, 0, imageWidth, imageHeight);
+        }
+        for(int i = 0; i < 8; i++){
+            BufferedImage img = createImage(jump[i]);
+            for(int j = 0; j < 8; j++)
+                jumpPics[i][j] = img.getSubimage(imageWidth*j, 0, imageWidth, imageHeight);
         }
         frame.setVisible(true);
     }
@@ -70,13 +88,13 @@ class View extends JPanel{
         if(!paused){
             picNum = (picNum + 1) % frameCount;
         }
-        g.drawImage(pics[direction.ordinal()][picNum], xloc, yloc, Color.gray, this);
+        g.drawImage(firePics[direction.ordinal()][picNum], xloc, yloc, Color.gray, this);
     }
     
     private BufferedImage createImage(String aDirection){
     	BufferedImage bufferedImage;
     	try {
-    		bufferedImage = ImageIO.read(new File("images/orc/orc_forward_"+ 
+    		bufferedImage = ImageIO.read(new File("images/orc/orc_"+ 
                         aDirection +".png"));
     		return bufferedImage;
     	} catch (IOException e) {
