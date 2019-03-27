@@ -1,6 +1,7 @@
 /**
  * Do not modify this file without permission from your TA.
  **/
+package lab6;
 public class Controller {
 
 	private Model model;
