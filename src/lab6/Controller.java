@@ -2,7 +2,11 @@
  * Do not modify this file without permission from your TA.
  **/
 package lab6;
-public class Controller {
+
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
+public class Controller implements KeyListener{
 
 	private Model model;
 	private View view;
@@ -22,4 +26,30 @@ public class Controller {
 			view.update(model.getX(), model.getY(), model.getDirect());
 		}
 	}
+        
+        public void keyTyped(KeyEvent e) {
+        System.out.println("keyTyped");
+        int key = e.getKeyCode();
+        if (key == KeyEvent.VK_SPACE && !View.paused) {
+            View.jump = true;
+        } else if (key == KeyEvent.VK_F) {
+            View.fire = true;
+        }
+    }
+
+    public void keyPressed(KeyEvent e) {
+        System.out.println("KeyPressed");
+        int key = e.getKeyCode();
+        if (key == KeyEvent.VK_F && !View.paused) {
+            View.fire = true;
+        }
+
+    }
+
+    public void keyReleased(KeyEvent e) {
+        System.out.println("KeyReleased");
+        View.fire = false;
+        View.jump = false;
+    }
+        
 }

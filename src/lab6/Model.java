@@ -33,7 +33,7 @@ class Model {
     }
 
     public void updateLocationAndDirection() {
-        if (View.paused) {
+        if (View.paused || View.fire) {
             xloc += 0;
             yloc += 0;
         } else {
