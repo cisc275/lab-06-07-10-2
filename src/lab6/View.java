@@ -86,7 +86,7 @@ class View extends JPanel{
     
     public void paint(Graphics g){
         if(!paused){
-            picNum = (picNum + 1) % frameCount;
+            picNum = (picNum + 1) % 4;//frameCount;
         }
         g.drawImage(firePics[direction.ordinal()][picNum], xloc, yloc, Color.gray, this);
     }
