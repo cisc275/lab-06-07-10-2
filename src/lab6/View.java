@@ -23,10 +23,6 @@ import javax.swing.KeyStroke;
 
 class View extends JPanel{
 
-    //frame.repaint
-    //paint
-    //createImage
-    //frame dimensions
     final static int frameWidth = 500;
     final static int frameHeight = 300;
     final static int imageWidth = 165;
@@ -37,11 +33,11 @@ class View extends JPanel{
     Direction direction;
     int xloc = 0;
     int yloc = 0;
-    int picNum = 0;
+    static int picNum = 0;
     static BufferedImage[][] pics;
     static BufferedImage[][] firePics;
     static BufferedImage[][] jumpPics;
-    JFrame frame;
+    static JFrame frame;
     JButton jb;
     static boolean paused = false;
     static boolean fire = false;
@@ -49,16 +45,17 @@ class View extends JPanel{
 
     public View() {
         frame = new JFrame();
+        frame.setFocusable(true);
         jb = new JButton("Pause");
         jb.setBounds(frameWidth - 150, 0, 100, 50);
         jb.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 paused = !paused;
+                jb.setFocusable(false);
             }
         });
         jb.getInputMap().put(KeyStroke.getKeyStroke("SPACE"), "none");
         frame.add(jb);
-        //frame.addKeyListener(this);
         frame.getContentPane().add(this);
         frame.setBackground(Color.gray);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -98,11 +95,22 @@ class View extends JPanel{
 
     public void paint(Graphics g) {
         if (!paused && jump) {
-            picNum = (picNum + 1) % jumpFrameCount;
-            g.drawImage(jumpPics[direction.ordinal()][picNum], xloc, yloc, Color.gray, this);
+            picNum++;
+            if(picNum == jumpFrameCount){
+                jump = false;
+            }
+            else{
+                g.drawImage(jumpPics[direction.ordinal()][picNum], xloc, yloc, Color.gray, this);
+            }
         } else if (!paused && fire) {
-            picNum = (picNum + 1) % fireFrameCount;
-            g.drawImage(firePics[direction.ordinal()][picNum], xloc, yloc, Color.gray, this);
+            picNum++;
+            if(picNum == fireFrameCount){
+                fire = false;
+            }
+            else{
+                g.drawImage(firePics[direction.ordinal()][picNum], xloc, yloc, Color.gray, this);
+            }
+            
         } else if (!paused) {
             picNum = (picNum + 1) % frameCount;
             g.drawImage(pics[direction.ordinal()][picNum], xloc, yloc, Color.gray, this);
