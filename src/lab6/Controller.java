@@ -27,15 +27,7 @@ public class Controller implements KeyListener{
     }
 
     @Override
-    public void keyTyped(KeyEvent e) {
-//        System.out.println("keyTyped");
-//        int key = e.getKeyCode();
-//        if (key == KeyEvent.VK_SPACE && !View.paused) {
-//            View.jump = true;
-//        } else if (key == KeyEvent.VK_F) {
-//            View.fire = true;
-//        }
-    }
+    public void keyTyped(KeyEvent e) {}
 
     @Override
     public void keyPressed(KeyEvent e) {
@@ -52,10 +44,6 @@ public class Controller implements KeyListener{
     }
 
     @Override
-    public void keyReleased(KeyEvent e) {
-//        System.out.println("KeyReleased");
-//        View.fire = false;
-//        View.jump = false;
-    }
+    public void keyReleased(KeyEvent e) {}
 
 }
