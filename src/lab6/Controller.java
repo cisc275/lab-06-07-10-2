@@ -37,7 +37,7 @@ public class Controller implements KeyListener{
             View.picNum = 0;
             View.fire = true;
         }
-        else if (key == KeyEvent.VK_SPACE && !View.paused) {
+        else if (key == KeyEvent.VK_J && !View.paused) {
             View.picNum = 0;
             View.jump = true;
         }
